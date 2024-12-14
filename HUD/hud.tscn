@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpq2nopois25c"]
+
+[ext_resource type="Script" path="res://HUD/hud.gd" id="1_48kps"]
+[ext_resource type="PackedScene" uid="uid://bvbggeft445oo" path="res://HUD/HeartIcon.tscn" id="1_k3hje"]
+[ext_resource type="PackedScene" uid="uid://vudyy0nv180f" path="res://HUD/EmptyHeartIcon.tscn" id="2_oi31y"]
+[ext_resource type="PackedScene" uid="uid://bdb7anxdmcl7i" path="res://HUD/HalfHeartIcon.tscn" id="3_x70g8"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_48kps")
+
+[node name="HeartContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 20.0
+offset_right = 1420.0
+offset_bottom = 640.0
+scale = Vector2(0.3, 0.3)
+
+[node name="HeartIcon" parent="HeartContainer" instance=ExtResource("1_k3hje")]
+layout_mode = 2
+expand_mode = 5
+
+[node name="EmptyHeartIcon" parent="HeartContainer" instance=ExtResource("2_oi31y")]
+layout_mode = 2
+
+[node name="HalfHeartIcon" parent="HeartContainer" instance=ExtResource("3_x70g8")]
+layout_mode = 2

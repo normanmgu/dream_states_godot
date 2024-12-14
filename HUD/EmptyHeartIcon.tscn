@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://vudyy0nv180f"]
+
+[ext_resource type="Texture2D" uid="uid://do0rsnmvq4xf0" path="res://assets/HealthUI.png" id="1_ca7l8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh7dt"]
+atlas = ExtResource("1_ca7l8")
+region = Rect2(0, 66, 11, 11)
+
+[node name="EmptyHeartIcon" type="TextureRect"]
+offset_right = 11.0
+offset_bottom = 11.0
+rotation = -0.000646055
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_xh7dt")

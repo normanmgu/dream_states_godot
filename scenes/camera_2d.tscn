@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7gbybw2juol2"]
+
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="1_55kac"]
+[ext_resource type="PackedScene" uid="uid://cpq2nopois25c" path="res://HUD/hud.tscn" id="2_2jedt"]
+
+[node name="Camera2D" type="Camera2D"]
+script = ExtResource("1_55kac")
+player_path = NodePath("../y-sort-objects/Player")
+
+[node name="HUD" parent="." instance=ExtResource("2_2jedt")]
+visible = false
+modulate = Color(1, 1, 1, 0.662745)
+z_index = 10
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 206.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.2, 0.2)
