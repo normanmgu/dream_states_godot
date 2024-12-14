@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 enum Direction { RIGHT, LEFT, DOWN, UP}
 
-
 @export var speed = 150.0
 # @export var health = 100.0
 @export var max_health = 3
@@ -20,6 +19,12 @@ var last_pressed_direction = Direction.DOWN
 func player():
 	pass
 
+func die():
+	player_alive = false
+	var anim = $AnimatedSprite2D
+	anim.play("death")
+	global.player_died.emit()
+
 
 func _ready() -> void:
 	current_direction = Direction.DOWN
@@ -30,14 +35,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	player_movement(delta)
-	enemy_attack()
-	attack()
+	if player_alive:
+		player_movement(delta)
+		enemy_attack()
+		attack()
 
-	if current_health <= 0:
-		player_alive = false # add death scene
-		print("player has been killed")
-		self.queue_free()
+		if current_health <= 0:
+			die()
 
 func play_anim(movement):
 	var anim = $AnimatedSprite2D
@@ -187,3 +191,10 @@ func _on_deal_attack_timer_timeout() -> void:
 	$deal_attack_timer.stop()
 	global.player_current_attack = false
 	attack_ip = false
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	print("here")
+	if $AnimatedSprite2D.animation.ends_with("death"):
+		print("made it here")	
+		$AnimatedSprite2D.play("dead")

@@ -1,6 +1,9 @@
 extends Node
 
 signal health_changed(current_health: int, max_health: int)
+signal player_died
+signal enemy_defeated
+signal player_won
 
 var player_current_attack = false
 var current_scene = "world"

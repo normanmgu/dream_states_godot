@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpq2nopois25c"]
+[gd_scene load_steps=7 format=3 uid="uid://cpq2nopois25c"]
 
 [ext_resource type="Script" path="res://HUD/hud.gd" id="1_48kps"]
 [ext_resource type="PackedScene" uid="uid://bvbggeft445oo" path="res://HUD/HeartIcon.tscn" id="1_k3hje"]
 [ext_resource type="PackedScene" uid="uid://vudyy0nv180f" path="res://HUD/EmptyHeartIcon.tscn" id="2_oi31y"]
 [ext_resource type="PackedScene" uid="uid://bdb7anxdmcl7i" path="res://HUD/HalfHeartIcon.tscn" id="3_x70g8"]
+[ext_resource type="Texture2D" uid="uid://nsa5ag7lkbsu" path="res://assets/GAME OVER!.png" id="5_xmt5r"]
+[ext_resource type="Texture2D" uid="uid://ctxjphqhust2w" path="res://assets/GAME WON!.png" id="6_swfab"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -35,3 +37,57 @@ layout_mode = 2
 
 [node name="HalfHeartIcon" parent="HeartContainer" instance=ExtResource("3_x70g8")]
 layout_mode = 2
+
+[node name="GameOverContainer" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverLetters" type="TextureRect" parent="GameOverContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 800.0
+offset_top = 298.0
+offset_right = 1444.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xmt5r")
+
+[node name="GameOverRetryButton" type="Button" parent="GameOverContainer"]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 776.0
+offset_right = 1630.0
+offset_bottom = 964.0
+text = "BACK"
+
+[node name="WinContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WinLetters" type="TextureRect" parent="WinContainer"]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 386.0
+offset_right = 1512.0
+offset_bottom = 676.0
+texture = ExtResource("6_swfab")
+
+[node name="GameWinRetryButton" type="Button" parent="WinContainer"]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 850.0
+offset_right = 1440.0
+offset_bottom = 958.0
+text = "Back
+"
+
+[connection signal="pressed" from="GameOverContainer/GameOverRetryButton" to="." method="_on_game_over_retry_button_pressed"]
+[connection signal="pressed" from="WinContainer/GameWinRetryButton" to="." method="_on_game_win_retry_button_pressed"]

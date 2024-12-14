@@ -2,6 +2,8 @@
 extends CharacterBody2D
 class_name BaseEnemy
 
+signal enemy_died
+
 # Base stats
 @export var speed: float = 40.0
 @export var health: float = 100.0
@@ -114,7 +116,9 @@ func die() -> void:
     if is_dying:
         return
     is_dying = true
+    enemy_died.emit()
     play_death_animation()
+    # show game over through hud
 
 func play_death_animation() -> void:
     push_error("play_death_animation() is not implemented")

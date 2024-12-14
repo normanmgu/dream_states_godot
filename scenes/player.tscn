@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cyem2hnasmhm8"]
+[gd_scene load_steps=59 format=3 uid="uid://cyem2hnasmhm8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_w3ows"]
 [ext_resource type="Texture2D" uid="uid://ghdqjgthf8qv" path="res://assets/characters/player.png" id="2_31gx6"]
@@ -50,6 +50,10 @@ region = Rect2(96, 336, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yy46"]
 atlas = ExtResource("2_31gx6")
 region = Rect2(144, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8mm6"]
+atlas = ExtResource("2_31gx6")
+region = Rect2(96, 432, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhf4c"]
 atlas = ExtResource("2_31gx6")
@@ -266,6 +270,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x8mm6")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bhf4c")
 }, {
 "duration": 1.0,
@@ -274,7 +286,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jxc48")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -438,8 +450,7 @@ script = ExtResource("1_w3ows")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_grr4t")
-animation = &"attack_front"
-frame_progress = 0.229314
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bmah8")
@@ -457,6 +468,7 @@ wait_time = 0.75
 [node name="deal_attack_timer" type="Timer" parent="."]
 wait_time = 0.5
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
